@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -6,7 +6,7 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-    origin: "http://localhost:4200"
+  origin: "http://localhost:4200",
 };
 
 app.use(cors(corsOptions));
@@ -17,13 +17,12 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-const db = require("./app/models");
-db.sequelize.sync();
+// const db = require("./app/models");
+// db.sequelize.sync();
 
 // simple route
 app.get("/", (req, res) => {
-    res.json({ message: "Welcome to Cristian Hernandez node application." });
+  res.json({ message: "Welcome to Cristian Hernandez node application." });
 });
 
 require("./app/routes/user.routes")(app);
@@ -31,5 +30,5 @@ require("./app/routes/user.routes")(app);
 // set port, listen for requests
 const PORT = process.env.PORT || 8002;
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}.`);
+  console.log(`Server is running on port ${PORT}.`);
 });
